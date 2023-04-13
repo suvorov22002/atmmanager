@@ -1,0 +1,72 @@
+<f:subview xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition>
+		
+		<rich:modalPanel
+			id="#{id}"
+			autosized="true"
+			width="#{width}"
+			height="#{height}"
+			rendered="#{rendered}"
+			showWhenRendered="#{showWhenRendered}">
+			
+			<f:facet name="header">
+				
+				<h:panelGroup>
+					<rich:spacer width="5px;"/>
+					<h:graphicImage value="#{titleIcon}"/>
+					<rich:spacer width="5px;"/>
+					<h:outputText value="#{title}" />
+				</h:panelGroup>
+				
+			</f:facet>
+			
+			<f:facet name="controls">
+				<h:form id="ModalDialogIconCloseForm" styleClass="formsStyle">
+					<h:panelGroup>
+						
+						<table cellpadding="0" cellspacing="0" border="0" align="right">
+							<tr>
+								<td colspan="3">
+									<rich:spacer height="2px;"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<ui:insert name="headerDesign"/>
+								</td>
+								<td>
+									<rich:spacer width="5px;"/>
+								</td>
+								<td>
+									<h:graphicImage value="#{closeIcon}">
+										<ui:insert name="closeIconAction" />
+									</h:graphicImage>
+								</td>
+							</tr>
+						</table>
+						
+					</h:panelGroup>
+				</h:form>
+			</f:facet>
+			
+			<h:form id="ModalDialogForm" styleClass="formsStyle">
+				
+				<a4j:outputPanel ajaxRendered="true">
+					
+					<ui:insert name="dialogContent" />
+					
+				</a4j:outputPanel>
+				
+			</h:form>
+			
+		</rich:modalPanel>
+		
+	</ui:composition>
+
+</f:subview>

@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:subview xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+		
+		<rich:modalPanel
+			id="ErrorDialog"
+			autosized="true"
+			width="400"
+			height="150"
+			rendered="#{clientArea.errorDialogModel.open}"
+			showWhenRendered="#{clientArea.errorDialogModel.open}">
+			
+			<f:facet name="header">
+				<h:outputText value="#{messages['errordialog.title']}" />
+			</f:facet>
+			
+			<f:facet name="controls">
+				<h:form id="ErrorDialogIconCloseForm">
+					<h:graphicImage id="errorDialogClose" value="#{viewHelper.sessionSkinURL}/Images/DialogClose.png">
+						<a4j:support event="onclick" reRender="#{clientArea.ID}" action="#{clientArea.errorDialogModel.closeErrorDialog}" onsubmit="Richfaces.hideModalPanel('ErrorDialog');"  immediate="true"/>
+					</h:graphicImage>
+				</h:form>
+			</f:facet>
+			
+			<h:form id="GenezisErrorDialog">
+				
+				<a4j:outputPanel ajaxRendered="true">
+				
+					<table width="100%" cellpadding="0" cellspacing="0" border="0">
+						<tr>
+							<td>
+								<rich:spacer height="10px"/>
+							</td>
+						</tr>
+						<tr>
+							<td class="errorDialogIcon">
+								<h:graphicImage value="#{viewHelper.sessionSkinURL}/Images/DialogErrorIcon.png" />
+							</td>
+							<td>
+								<rich:spacer width="10px"/>
+							</td>
+							<td class="errorDialogMessageArea">
+								<table width="100%" cellpadding="0" cellspacing="0" border="0">
+									<tr>
+										<td colspan="2" align="left">
+											<p class="errorDialogLabelStyle">
+												<h:outputText value="#{clientArea.errorDialogModel.exceptionMessageSumary}" />
+											</p>
+										</td>
+										<td width="20">
+											<img src="#{viewHelper.sessionSkinURL}/Images/expand.gif" id="detailsShowLink" title="#{messages['errorpage.expand.tooltip']}" onclick="document.getElementById('divDetails').style.display = 'block';document.getElementById('detailsHideLink').style.display = 'block';this.style.display = 'none'"/>
+											<img src="#{viewHelper.sessionSkinURL}/Images/collapse.gif" id="detailsHideLink" title="#{messages['errorpage.collapse.tooltip']}" onclick="document.getElementById('divDetails').style.display = 'none';document.getElementById('detailsShowLink').style.display = 'block';this.style.display = 'none'" style="display: none;"/>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								
+								<table width="100%" align="center">
+																		
+									<tr>
+										<td width="100%">
+											
+											<div id="divContainer">
+												<div id="divDetails" style="display: none;">
+													<table width="100%" align="left">
+														<tr>
+															<td>
+																<textarea class="error-detail-textArea"  rows="10" cols="30" readonly="readonly" >
+																	<h:outputText value="#{clientArea.errorDialogModel.exceptionMessageDetails}" />
+																</textarea>
+															</td>
+														</tr>
+													</table>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+					<table align="center">
+						<tr>
+							<td>
+								<div align="right">
+									<a4j:commandButton styleClass="ui-button ui-widget ui-state-default ui-corner-all" action="#{clientArea.errorDialogModel.closeErrorDialog}" value="#{messages['errorpage.btnquitter']}" onclick="Richfaces.hideModalPanel('ErrorDialog');" reRender="#{clientArea.ID}"  immediate="true"/>
+								</div>
+							</td>
+						</tr>
+					</table>
+				
+				</a4j:outputPanel>
+					
+			</h:form>
+			
+		</rich:modalPanel>
+		
+</f:subview>

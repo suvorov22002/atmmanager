@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+ <display-name>CreditCarteJSF</display-name>
+ <context-param>
+  <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+  <param-value>server</param-value>
+ </context-param>
+ <context-param>
+  <description>Suffixe par défaut de l'application (XHTML)</description>
+  <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+  <param-value>.xhtml</param-value>
+ </context-param>
+ <context-param>
+  <param-name>facelets.REFRESH_PERIOD</param-name>
+  <param-value>2</param-value>
+ </context-param>
+ <context-param>
+  <param-name>facelets.DEVELOPMENT</param-name>
+  <param-value>true</param-value>
+ </context-param>
+ <context-param>
+  <param-name>com.sun.faces.validateXml</param-name>
+  <param-value>true</param-value>
+ </context-param>
+ <context-param>
+  <param-name>com.sun.faces.verifyObjects</param-name>
+  <param-value>true</param-value>
+ </context-param>
+ <context-param>
+  <description>Skin RichFaces par defaut</description>
+  <param-name>org.richfaces.SKIN</param-name>
+  <param-value>deepMarine</param-value>
+ </context-param>
+ <context-param>
+  <description>Liste des Librairies Personnalisée de Genezis</description>
+  <param-name>facelets.LIBRARIES</param-name>
+  <param-value>/Components/DialogComponent.taglib.xml</param-value>
+ </context-param>
+ <filter>
+  <description>Filtre RichFaces pour les requêtes AJAX venant du Client</description>
+  <display-name>RichFaces Filter</display-name>
+  <filter-name>RichFacesFilter</filter-name>
+  <filter-class>org.ajax4jsf.Filter</filter-class>
+  <init-param>
+   <description>Paramètre permettant de créer un Fichier temporaire lors de l'Upload de Fichier avec un rich:fileUpload</description>
+   <param-name>createTempFiles</param-name>
+   <param-value>true</param-value>
+  </init-param>
+ </filter>
+ <filter>
+  <description>Filtre sur d'initialisation des parametres de preferences Utilisateur</description>
+  <display-name>UserInitializerFilter</display-name>
+  <filter-name>UserInitializerFilter</filter-name>
+  <filter-class>com.afb.portal.presentation.tools.filters.UserInitializerFilter</filter-class>
+ </filter>
+ <filter>
+  <description>RichFacesFirefox11Filter</description>
+  <filter-name>RichFacesFirefox11Filter</filter-name>
+  <filter-class>com.afb.portal.presentation.tools.filters.RichFacesFirefox11Filter</filter-class>
+ </filter>
+ <filter-mapping>
+  <filter-name>RichFacesFilter</filter-name>
+  <servlet-name>FacesServlet</servlet-name>
+  <dispatcher>REQUEST</dispatcher>
+  <dispatcher>INCLUDE</dispatcher>
+  <dispatcher>FORWARD</dispatcher>
+ </filter-mapping>
+ <filter-mapping>
+  <filter-name>UserInitializerFilter</filter-name>
+  <servlet-name>FacesServlet</servlet-name>
+  <dispatcher>REQUEST</dispatcher>
+  <dispatcher>FORWARD</dispatcher>
+ </filter-mapping>
+ <filter-mapping>
+  <filter-name>RichFacesFirefox11Filter</filter-name>
+  <servlet-name>RichFacesFirefox11Filter</servlet-name>
+  <dispatcher>REQUEST</dispatcher>
+  <dispatcher>FORWARD</dispatcher>
+ </filter-mapping>
+ <listener>
+  <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+ </listener>
+ <listener>
+  <description>Listener de chargement de l'application Genezis</description>
+  <display-name>ContextLoaderListener</display-name>
+  <listener-class>com.afb.portal.presentation.tools.listeners.ContextLoaderListener</listener-class>
+ </listener>
+ <servlet>
+  <servlet-name>FacesServlet</servlet-name>
+  <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+  <load-on-startup>1</load-on-startup>
+ </servlet>
+ <servlet>
+  <description>Servlet permettant de gérer les ressources WEB de l'application</description>
+  <display-name>WebResourceManager</display-name>
+  <servlet-name>WebResourceManager</servlet-name>
+  <servlet-class>com.afb.portal.presentation.tools.WebResourceManager</servlet-class>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>FacesServlet</servlet-name>
+  <url-pattern>*.jsf</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>WebResourceManager</servlet-name>
+  <url-pattern>/Resources/*</url-pattern>
+ </servlet-mapping>
+ <session-config>
+  <session-timeout>25</session-timeout>
+ </session-config>
+ <welcome-file-list>
+  <welcome-file>/index.jsp</welcome-file>
+ </welcome-file-list>
+ <error-page>
+  <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+  <location>/views/jsp/error.jsp</location>
+ </error-page>
+ <login-config>
+  <auth-method>BASIC</auth-method>
+ </login-config>
+</web-app>

@@ -1,0 +1,148 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+					
+	<!-- Monitoring -->					
+	<rich:dropDownMenu  rendered="true" submitMode="ajax"   >
+		<f:facet name="label">
+			<h:panelGroup>
+				<h:graphicImage value="#{viewHelper.sessionSkinURL}/Images/ditListPanelIcon.png" />
+				<rich:spacer styleClass="MenuImage-Title-Space"/>
+				<h:outputText value="Monitoring" />
+			</h:panelGroup>
+		</f:facet>
+		
+		 <!-- ATM -->
+		 <rich:menuItem submitMode="ajax" value="Gab" action="#{clientArea.showCurrentPanel}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();">
+			<f:setPropertyActionListener target="#{clientArea.currentPanelName}" value="#{atmListPanel.name}" />
+		 </rich:menuItem>
+		 
+		 <!-- ATM -->
+		 <rich:menuItem submitMode="ajax" value="TPE" action="#{clientArea.showCurrentPanel}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();">
+			<f:setPropertyActionListener target="#{clientArea.currentPanelName}" value="#{tPEListPanel.name}" />
+		 </rich:menuItem>
+		 
+		<!-- Birthday -->
+		<rich:menuItem submitMode="ajax" value="Alerte Echouee" action="#{birthdayDialog.open}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+		 
+		<!-- Etat des Caisses ATM -->
+		<rich:menuItem  submitMode="ajax" value="Rapport de Monitoring TPE" action="#{rapportJourMonitoringTPE.open}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+		
+		<!-- Etat des Caisses ATM -->
+		<rich:menuItem  submitMode="ajax" value="Rapport de Monitoring Gabs" action="#{rapportJourMonitoring.open}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+		  		
+		<!-- Etat des Caisses ATM -->
+		<rich:menuItem  submitMode="ajax" value="Etat des Transactions 1F" action="#{transactions.open}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+		
+		<!-- Etat des Caisses ATM -->
+		<rich:menuItem  submitMode="ajax" value="Etat des TElecollectes" action="#{telecollecte.open}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+				 
+	</rich:dropDownMenu>
+	
+	
+	<!-- Intervention -->					
+	<rich:dropDownMenu  submitMode="ajax" >
+		<f:facet name="label">
+			<h:panelGroup>
+				<h:graphicImage value="#{viewHelper.sessionSkinURL}/Images/ditListPanelIcon.png" />
+				<rich:spacer styleClass="MenuImage-Title-Space"/>
+				<h:outputText value="Interventions" />
+			</h:panelGroup>
+		</f:facet>
+		
+		 <!-- Type Intervention -->
+		 <rich:menuItem submitMode="ajax" value="Type Intervention" action="#{clientArea.showCurrentPanel}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();">
+			<f:setPropertyActionListener target="#{clientArea.currentPanelName}" value="#{typeInterventionListPanel.name}" />
+		 </rich:menuItem>
+		 
+		 <!-- Intervention -->
+		 <rich:menuItem submitMode="ajax" value="Intervention" action="#{clientArea.showCurrentPanel}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();">
+			<f:setPropertyActionListener target="#{clientArea.currentPanelName}" value="#{interventionListPanel.name}" />
+		 </rich:menuItem>
+			 	 						
+	</rich:dropDownMenu>
+	
+	
+	<!-- Sauvegarde -->					
+	<rich:dropDownMenu  submitMode="ajax" >
+		<f:facet name="label">
+			<h:panelGroup>
+				<h:graphicImage value="#{viewHelper.sessionSkinURL}/Images/ditListPanelIcon.png" />
+				<rich:spacer styleClass="MenuImage-Title-Space"/>
+				<h:outputText value="Sauvegarde" />
+			</h:panelGroup>
+		</f:facet>
+		
+		<!-- Parametrage Sauvegarde -->
+		 <rich:menuItem submitMode="ajax" value=" Sauvegarde" action="#{sauvegardeDialog.open}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+		 
+		 <!-- Groupes de Sauvegarde -->
+		 <rich:menuItem submitMode="ajax" value="Groupes de Sauvegarde" action="#{clientArea.showCurrentPanel}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();">
+			<f:setPropertyActionListener target="#{clientArea.currentPanelName}" value="#{groupeSauvListPanel.name}" />
+		 </rich:menuItem>
+			 	 						
+	</rich:dropDownMenu>
+	
+	
+	
+	<!-- Statistiques -->					
+	<rich:dropDownMenu  submitMode="ajax" >
+		<f:facet name="label">
+			<h:panelGroup>
+				<h:graphicImage value="#{viewHelper.sessionSkinURL}/Images/ditListPanelIcon.png" />
+				<rich:spacer styleClass="MenuImage-Title-Space"/>
+				<h:outputText value="Statistiques" />
+			</h:panelGroup>
+		</f:facet>
+		
+		<!-- Parametrage Sauvegarde -->
+		 <rich:menuItem  submitMode="ajax" value="Stat des Incident/Gab" action="#{statIncidentGabDialog.open}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+		 		 
+		 <!-- Parametrage Sauvegarde -->
+		 <rich:menuItem  submitMode="ajax" value="Stat des Gab/Incident" action="#{statGabIncidentDialog.open}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+		 			 	 						
+	</rich:dropDownMenu>
+	
+		
+	<!-- Parametre  -->					
+	<rich:dropDownMenu  rendered="true" submitMode="ajax" >
+		<f:facet name="label">
+			<h:panelGroup>
+				<h:graphicImage value="#{viewHelper.sessionSkinURL}/Images/PlatformConfigurationPanelLogo.png" />
+				<rich:spacer styleClass="MenuImage-Title-Space"/>
+				<h:outputText value="#{messages['parametres.title']}" />
+			</h:panelGroup>
+		</f:facet>		 
+		
+		<rich:menuGroup  value="Equipement" >
+			
+			 <!-- Type Equipement -->
+			 <rich:menuItem submitMode="ajax" value="Type Equipement" action="#{clientArea.showCurrentPanel}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();">
+				<f:setPropertyActionListener target="#{clientArea.currentPanelName}" value="#{typeEquipementListPanel.name}" />
+			 </rich:menuItem>
+			 
+			  <!-- Equipement -->
+			 <rich:menuItem submitMode="ajax" value="Equipement" action="#{clientArea.showCurrentPanel}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();">
+				<f:setPropertyActionListener target="#{clientArea.currentPanelName}" value="#{equipementListPanel.name}" />
+			 </rich:menuItem>
+		 
+		</rich:menuGroup>
+		 
+		  <!-- Type Incident -->
+		 <rich:menuItem submitMode="ajax" value="Type Incident" action="#{clientArea.showCurrentPanel}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();">
+			<f:setPropertyActionListener target="#{clientArea.currentPanelName}" value="#{typeIncidentListPanel.name}" />
+		 </rich:menuItem>
+		 		
+		 <!-- Parametre -->
+		 <rich:menuItem submitMode="ajax" value="Parametre Generaux" action="#{clientArea.showCurrentPanel}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}"  onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();">
+			<f:setPropertyActionListener target="#{clientArea.currentPanelName}" value="#{parameterListPanel.name}" />
+		 </rich:menuItem>
+													
+	</rich:dropDownMenu>
+			
+	<ui:include src="#{clientArea.waitDialogDefinition}" />		
+					
+</f:view>

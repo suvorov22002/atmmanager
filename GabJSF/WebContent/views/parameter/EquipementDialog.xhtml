@@ -1,0 +1,94 @@
+<f:subview xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:dc="http://www.afrilandfirstbank.com/Facelets/Taglib/DialogComponent">
+	
+	<dc:ParameterDialogComponent
+		id = "equipementDialog"
+		width = "330"
+		height = "150"
+		rendered = "#{equipementListPanel.equipementDialog.open}"
+		showWhenRendered = "#{equipementListPanel.equipementDialog.open}"
+		titleIcon = "#{equipementListPanel.equipementDialog.icon}"
+		title = "#{messages[equipementListPanel.equipementDialog.title]}"
+		closeIcon = "#{viewHelper.sessionSkinURL}/Images/DialogClose.png">
+		
+		<ui:define name="closeIconAction">
+			<a4j:support event="onclick" action="#{equipementListPanel.equipementDialog.cancel}" onsubmit="Richfaces.hideModalPanel('equipementDialog');" immediate="true"/>
+		</ui:define>
+		
+		<ui:define name="defineDialogContent">
+			
+			 <fieldset class="fieldSetStyle">
+			  <legend> </legend>
+		      
+				   <table width="100%" align="center" cellpadding="2" cellspacing="2" border="0">
+				   
+						    <tr>
+						    <td align="left">
+						      <h:outputText value="Libelle" styleClass="labelStyle"/>
+						    </td>  
+						    <td>  
+						      <rich:spacer width="5px"/>
+						      <h:inputText value="#{equipementListPanel.equipementDialog.currentObject.libelle}"  styleClass="text ui-widget-content ui-corner-all" onkeyup="javascript:metEnMajuscule(this.id);" />				 
+						    </td>
+						   </tr>
+						   			   
+						   <tr>
+						    <td align="left">
+						     <rich:spacer height="5px"/>
+						      <h:outputText value="Type" styleClass="labelStyle"/>
+						     </td>  
+						    <td> 
+						       <rich:spacer height="5px"/>
+						       <h:selectOneMenu  value="#{equipementListPanel.equipementDialog.typeEquipement}"  styleClass="text ui-widget-content ui-corner-all" >
+								   <f:selectItems   value="#{equipementListPanel.equipementDialog.items}" />
+						 	    </h:selectOneMenu>
+						    </td>
+						   </tr>
+						   
+						   <tr>
+						    <td align="left">
+						     <rich:spacer height="5px"/>
+						      <h:outputText value="#{messages['ctrlp.panelsearch.descr']}" styleClass="labelStyle"/>
+						    </td>  
+						    <td> 
+						       <rich:spacer height="5px"/>
+						       <h:inputTextarea value="#{equipementListPanel.equipementDialog.currentObject.description}" styleClass="text ui-widget-content ui-corner-all" style="height:100;width:200px;" />  
+						    </td>
+						   </tr>
+				   
+				</table>
+			  
+	  	 	</fieldset>
+	  	 	
+						
+  	 		<table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"> 
+	  	 		<tr>
+	  	 			<td width="100%" align="right">
+	  	 				
+						<h:panelGrid columns="5">
+							<rich:spacer width="5px"/>
+							<a4j:commandButton value="#{messages['dialog.btnvalider']}"  action="#{equipementListPanel.equipementDialog.close}" reRender="#{clientArea.ID}" styleClass="ui-button ui-widget ui-state-default ui-corner-all" onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+		                    <rich:spacer width="5px"/>
+							<a4j:commandButton value="#{messages['dialog.btnannuler']}" action="#{equipementListPanel.equipementDialog.cancel}" onclick="Richfaces.hideModalPanel('equipementDialog');" styleClass="ui-button ui-widget ui-state-default ui-corner-all" immediate="true"/>
+                            <rich:spacer width="5px"/>
+						</h:panelGrid>
+						
+	  	 			</td>
+	  	 		</tr>
+	  	 	</table>
+	  	 	
+		
+		</ui:define>
+		
+	</dc:ParameterDialogComponent>
+	
+	<ui:include src="#{equipementListPanel.equipementDialog.errorDialogDefinition}" />
+	<ui:include src="#{equipementListPanel.equipementDialog.informationDialogDefinition}" />
+	<ui:include src="#{equipementListPanel.equipementDialog.waitDialogDefinition}" />
+	
+</f:subview>

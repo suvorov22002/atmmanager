@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<afb-portal>
+	<module>
+		<code>GABM_001</code>
+		<title>Monitoring des Gabs </title>
+		<description>Monitoring des Gabs </description>
+		<earName>GabEAR</earName>
+		<date>01/07/2015</date>
+		<version>Version 1.0</version>
+		<developer>Francis K</developer>
+		<address>francis_konchou@afrilandfirstbank.com</address>
+		<context-root>GabJSF</context-root>
+		<image>Gab.png</image>
+	</module>
+</afb-portal>

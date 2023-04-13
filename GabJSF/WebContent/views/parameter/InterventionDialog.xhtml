@@ -1,0 +1,205 @@
+<f:subview xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:dc="http://www.afrilandfirstbank.com/Facelets/Taglib/DialogComponent">
+	
+	<dc:ParameterDialogComponent
+		id = "interDialog"
+		width = "700"
+		height = "150"
+		rendered = "#{interventionListPanel.dialog.open}"
+		showWhenRendered = "#{interventionListPanel.dialog.open}"
+		titleIcon = "#{interventionListPanel.dialog.icon}"
+		title = "#{messages[interventionListPanel.dialog.title]}"
+		closeIcon = "#{viewHelper.sessionSkinURL}/Images/DialogClose.png">
+		
+		<ui:define name="closeIconAction">
+			<a4j:support event="onclick" action="#{interventionListPanel.dialog.cancel}" onsubmit="Richfaces.hideModalPanel('interDialog');" immediate="true"/>
+		</ui:define>
+		
+		<ui:define name="defineDialogContent">
+			
+			 <fieldset class="fieldSetStyle">
+			  <legend> </legend>
+		      
+				   <table width="100%" align="center" cellpadding="2" cellspacing="2" border="0">
+				   
+						<tr>
+						    <td align="left">
+						      <h:outputText value="Gab" styleClass="labelStyle"/>
+						    </td>  
+						    <td>  
+						      <h:inputText id="input" value="#{interventionListPanel.dialog.txtName}" styleClass="text ui-widget-content ui-corner-all" />				      
+						  	  <rich:suggestionbox
+							       limitToList="true"
+							       bgcolor="#ffffff"
+								   suggestionAction="#{interventionListPanel.dialog.chargeAtm}" 
+								   var="state" 
+								   for="input"
+								   fetchValue="#{state.nom}"
+								   nothingLabel="......">
+									<h:column>
+									   <h:outputText value="#{state.nom}" style="font-size:11px; font-weight:bold; color:#333333;"/>
+									</h:column>
+						      </rich:suggestionbox>			 
+						    </td>
+						   
+						    <td align="left">
+						      <h:outputText value="Type" styleClass="labelStyle"/>
+						     </td>  
+						    <td> 
+						       <h:selectOneMenu  value="#{interventionListPanel.dialog.type}"  styleClass="text ui-widget-content ui-corner-all" >
+								   <f:selectItems   value="#{interventionListPanel.dialog.items}" />
+						 	    </h:selectOneMenu>
+						    </td>
+						</tr>
+						
+						<tr>
+						    <td align="left">
+						      <h:outputText value="Date" styleClass="labelStyle"/>
+						    </td>  
+						    <td>  
+						      <rich:calendar enableManualInput="true" datePattern="dd/MM/yyyy" value="#{interventionListPanel.dialog.currentObject.dateMise}" locale="#{clientArea.locale}" styleClass="textfieldStyle"/>		 
+						    </td>
+						   
+						    <td align="left">
+						      <h:outputText value="Nombre jours" styleClass="labelStyle"/>
+						     </td>  
+						    <td> 
+						       <h:inputText value="#{interventionListPanel.dialog.currentObject.nbrjour}" style="width:70px;" styleClass="text ui-widget-content ui-corner-all" />
+						    </td>
+						</tr>
+						
+						 <tr>
+						    <td align="left">
+						      <h:outputText value="Motif" styleClass="labelStyle"/>
+						    </td>  
+						    <td colspan="3">  
+						      <h:inputTextarea value="#{interventionListPanel.dialog.currentObject.libelle}" style="width:100%;height:60px;" styleClass="text ui-widget-content ui-corner-all"  />				 
+						    </td>
+						</tr>
+						
+						 <tr>
+						    <td align="left">
+						      <h:outputText value="Rapport" styleClass="labelStyle"/>
+						    </td>  
+						    <td colspan="3">  
+						      <h:inputTextarea value="#{interventionListPanel.dialog.currentObject.description}" style="width:100%;height:70px;" styleClass="text ui-widget-content ui-corner-all"  />				 
+						    </td>
+						</tr>
+							
+						<tr>
+						    <td align="left" colspan="4">
+						      <h:outputText value="#{messages[piece.intervention]}" styleClass="labelStyle"/>
+						          <fieldset>
+						            <rich:extendedDataTable
+										id="Table" 
+										rendered="true" 
+										var="var"
+										rowKeyVar="row"
+										width="100%"
+										height="110px"
+										value="#{interventionListPanel.dialog.equipements}"
+										rowClasses="row-style-impair, row-style-pair"
+										cellpadding="0"
+										selectionMode="multi"
+										selectedClass="row-style-selected"
+										noDataLabel=".........">
+										<rich:column width="20%">
+											<h:selectBooleanCheckbox value="#{var.active}" />
+										</rich:column>		
+										<rich:column width="80%">
+											<h:outputText value="#{var.type.libelle}" />
+										</rich:column>	
+									</rich:extendedDataTable>
+								  </fieldset>
+						     </td>  
+						   </tr>
+							
+						   <tr>  
+						   
+						    <td align="left" colspan="2" >
+						    
+						          <fieldset> <legend> <h:outputText value="Cassettes Avant" styleClass="labelStyle"/>  </legend>
+						            <h:panelGrid columns="2">
+						                <h:panelGroup >
+											<h:outputText value="Cassette 10 000: 1" styleClass="labelStyle"/>
+											<h:inputText value="#{interventionListPanel.dialog.currentObject.firstcass10000}" style="width:70px;" styleClass="text ui-widget-content ui-corner-all" />	
+										</h:panelGroup>
+										<h:panelGroup >
+											<h:outputText value="Cassette 10 000: 2" styleClass="labelStyle"/>
+											<h:inputText value="#{interventionListPanel.dialog.currentObject.secondcass10000}" style="width:70px;" styleClass="text ui-widget-content ui-corner-all" />	
+										</h:panelGroup>
+										<h:panelGroup >
+											<h:outputText value="Cassette 5 000: 1" styleClass="labelStyle"/>
+											<h:inputText value="#{interventionListPanel.dialog.currentObject.thirdcass5000}" style="width:70px;" styleClass="text ui-widget-content ui-corner-all" />	
+										</h:panelGroup>
+										<h:panelGroup >
+											<h:outputText value="Cassette 5 000: 2" styleClass="labelStyle"/>
+											<h:inputText value="#{interventionListPanel.dialog.currentObject.fourcass5000}" style="width:70px;" styleClass="text ui-widget-content ui-corner-all" />	
+										</h:panelGroup>
+							        </h:panelGrid>
+								  </fieldset>
+							  
+							 </td>
+							 
+							<td align="left" colspan="2" > 
+								<fieldset> <legend> <h:outputText value="Cassettes Apres" styleClass="labelStyle"/>  </legend>
+					            <h:panelGrid columns="2">
+					                <h:panelGroup >
+										<h:outputText value="Cassette 10 000: 1" styleClass="labelStyle"/>
+										<h:inputText value="#{interventionListPanel.dialog.currentObject.bfirstcass10000}" style="width:70px;" styleClass="text ui-widget-content ui-corner-all" />	
+									</h:panelGroup>
+									<h:panelGroup >
+										<h:outputText value="Cassette 10 000: 2" styleClass="labelStyle"/>
+										<h:inputText value="#{interventionListPanel.dialog.currentObject.bsecondcass10000}" style="width:70px;" styleClass="text ui-widget-content ui-corner-all" />	
+									</h:panelGroup>
+										
+									<h:panelGroup >
+										<h:outputText value="Cassette 5 000: 1" styleClass="labelStyle"/>
+										<h:inputText value="#{interventionListPanel.dialog.currentObject.bthirdcass5000}" style="width:70px;" styleClass="text ui-widget-content ui-corner-all" />	
+									</h:panelGroup>
+									<h:panelGroup >
+										<h:outputText value="Cassette 5 000: 2" styleClass="labelStyle"/>
+										<h:inputText value="#{interventionListPanel.dialog.currentObject.bfourcass5000}" style="width:70px;" styleClass="text ui-widget-content ui-corner-all" />	
+									</h:panelGroup>
+					            </h:panelGrid>
+							  </fieldset>							
+							
+							</td>
+						    
+						</tr>				   
+				</table>
+			  
+	  	 	</fieldset>
+	  	 	
+						
+  	 		<table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"> 
+	  	 		<tr>
+	  	 			<td width="100%" align="right">
+	  	 				
+						<h:panelGrid columns="5">
+							<rich:spacer width="5px"/>
+							<a4j:commandButton value="#{messages['dialog.btnvalider']}"  action="#{interventionListPanel.dialog.close}" reRender="#{clientArea.ID}" styleClass="ui-button ui-widget ui-state-default ui-corner-all" onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+		                    <rich:spacer width="5px"/>
+							<a4j:commandButton value="#{messages['dialog.btnannuler']}" action="#{interventionListPanel.dialog.cancel}" onclick="Richfaces.hideModalPanel('interDialog');" styleClass="ui-button ui-widget ui-state-default ui-corner-all" immediate="true"/>
+                            <rich:spacer width="5px"/>
+						</h:panelGrid>
+						
+	  	 			</td>
+	  	 		</tr>
+	  	 	</table>
+	  	 	
+		
+		</ui:define>
+		
+	</dc:ParameterDialogComponent>
+	
+	<ui:include src="#{interventionListPanel.dialog.errorDialogDefinition}" />
+	<ui:include src="#{interventionListPanel.dialog.informationDialogDefinition}" />
+	<ui:include src="#{interventionListPanel.dialog.waitDialogDefinition}" />
+	
+</f:subview>

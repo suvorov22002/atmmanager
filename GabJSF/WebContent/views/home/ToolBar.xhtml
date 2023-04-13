@@ -1,0 +1,34 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+		
+	<table border="0" cellpadding="0" cellspacing="0" align="center">
+		
+		<tr>
+			
+			<td valign="middle">
+				<rich:toolBarGroup id="GenezisToolQuitterGroup">
+					<rich:dropDownMenu id="GenezisToolQuitter" rendered="true" submitMode="ajax">
+						<f:facet name="label">
+							<h:panelGroup>
+								<h:graphicImage id="ToolQuitterLogo" value="#{viewHelper.sessionSkinURL}/Images/ToolQuitterLogo.png">
+									<a4j:support event="onclick" action="#{closeApplicationPanel.open}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}" />
+								</h:graphicImage>
+								<rich:toolTip value="#{messages['genezistool.quitter.title']}" for="ToolQuitterLogo" />
+							</h:panelGroup>
+						</f:facet>
+					</rich:dropDownMenu>
+				</rich:toolBarGroup>
+			</td>
+			
+			
+			
+			
+		</tr>
+		
+	</table>
+		
+</f:view>

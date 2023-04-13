@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:subview xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+		
+	<rich:modalPanel
+			id="ConfirmationDialog"
+			autosized="true"
+			width="300"
+			height="150"
+			showWhenRendered="#{clientArea.confirmationDialogModel.open}">
+		
+		<f:facet name="header">
+			<h:panelGroup>
+				<rich:spacer width="5px"/>
+				<h:outputText value="#{clientArea.confirmationDialogModel.title}" />
+			</h:panelGroup>
+		</f:facet>
+		
+		<f:facet name="controls">
+			<h:form id="InformationDialogIconCloseForm">
+				<h:graphicImage value="#{viewHelper.sessionSkinURL}/Images/DialogClose.png">
+					<a4j:support event="onclick" action="#{clientArea.confirmationDialogModel.close}" onsubmit="Richfaces.hideModalPanel('ConfirmationDialog');" immediate="true"/>
+				</h:graphicImage>
+			</h:form>
+		</f:facet>
+		
+		<h:form id="GenezisInformationDialog">
+			
+			<a4j:outputPanel ajaxRendered="true">
+				
+				<table width="100%" cellpadding="0" cellspacing="0" border="0">
+					
+					<tr>
+						<td>
+							<rich:spacer height="10px"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="informationDialogIcon">
+							<h:graphicImage value="#{viewHelper.sessionSkinURL}/Images/WarningDialogBoxIcon.png" />
+						</td>
+						<td>
+							<rich:spacer width="10px"/>
+						</td>
+						<td class="informationDialogMessaegArea">
+							<p class="informationDialogLabelStyle">
+								<h:outputText value="#{clientArea.confirmationDialogModel.message}" />
+							</p>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							<rich:spacer height="10px"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td align="center" colspan="3">
+							<a4j:commandButton action="#{clientArea.confirmationDialogModel.parent.validateConfirmationDialog}" value="#{messages['confirmation.dialog.btnvalidte']}" styleClass="ui-button ui-widget ui-state-default ui-corner-all" onclick="Richfaces.hideModalPanel('ConfirmationDialog');" immediate="true" reRender="#{clientArea.ID}" />
+							<rich:spacer width="10px"  />
+							<a4j:commandButton action="#{clientArea.confirmationDialogModel.close}" value="#{messages['confirmation.dialog.btnAnnuler']}" styleClass="ui-button ui-widget ui-state-default ui-corner-all" onclick="Richfaces.hideModalPanel('ConfirmationDialog');" immediate="true" reRender="#{clientArea.confirmationDialogModel.rerenderAreaID}" oncomplete="#{clientArea.confirmationDialogModel.javaScript}"  />
+							
+						</td>
+					</tr>
+				</table>
+				
+			</a4j:outputPanel>
+		
+		</h:form>
+		
+	</rich:modalPanel>
+	
+</f:subview>

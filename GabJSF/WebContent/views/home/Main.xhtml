@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+	
+	<ui:composition template="LayoutPage.xhtml">
+		
+		<head>
+			<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+    		<link rel="stylesheet" href="#{viewHelper.sessionSkinURL}/Style/mainStyle.css" type="text/css" media="all"/>
+		</head>
+		   
+		<ui:define name="ApplicationArea">
+		
+			<table class="Template_ApplicationArea_Style" align="center" cellpadding="0" cellspacing="0" style="border-spacing: 0;">
+								
+				<tr class="middleAreaHeight">
+					<td id="Template_Activ_Container_Style" class="Template_Activ_Container_Style" align="center" valign="top">
+						
+						<table id="ActivAreaContainer"  style="height:100%" width="100%" cellpadding="0" cellspacing="0" border="0">
+							<tr>
+														
+								<td id="ClientMenuArea" class="ClientMenuArea" align="left" valign="top">
+																		
+									<table align="left" width="100%" style="height:100%" cellpadding="0" cellspacing="0" border="0">
+												
+											<tr>
+												<td id="MenuBarArea" align="left" valign="top">
+													<h:form id="MenuForm" styleClass="formsStyle">			
+														<rich:toolBar id="MenuToolBar" styleClass="MenuToolBar">
+															<ui:include src="/views/home/MenuBar.xhtml" />
+														</rich:toolBar>
+													</h:form>
+												</td>
+											</tr>
+											
+											<tr>
+												<td align="left" valign="top" height="10" >
+													 <h:outputText value="#{clientArea.libuserId}" styleClass="labelStyle" />
+													 <h:form> <a4j:htmlCommandLink value="Quittez ici" action="#{clientArea.deconnexion}" immediate="true" styleClass="labelStyle" /> </h:form>
+												</td>
+											</tr>
+																					
+											<tr>
+												<td valign="top" align="center" height="100%">
+													<table width="100%" cellpadding="0" cellspacing="0" border="0">
+														<tr>
+															<td valign="top" height="100%">
+																<rich:panel id="ClientAreaContainer" rendered="true" styleClass="client-panel-body">
+																	
+																	<ui:include src="#{clientArea.currentPanel.fileDefinition}" /> 
+																	<ui:include src="#{sauvegardeDialog.fileDefinition}" /> 
+																	<ui:include src="#{birthdayDialog.fileDefinition}" />
+																	<ui:include src="#{transactions.fileDefinition}" />
+																	<ui:include src="#{telecollecte.fileDefinition}" />
+																	<!-- <ui:include src="#{interventionListPanel.fileDefinition}" />
+																	<ui:include src="#{equipementListPanel.fileDefinition}" />
+																	<ui:include src="#{typeEquipementListPanel.fileDefinition}" />
+																	<ui:include src="#{typeIncidentListPanel.fileDefinition}" />
+																	<ui:include src="#{typeInterventionListPanel.fileDefinition}" />-->
+																	<ui:include src="#{parameterSauvDialog.fileDefinition}" />
+																	<ui:include src="#{atmGroupDialog.fileDefinition}" />
+																	
+																</rich:panel>
+															</td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+										
+									</table>
+									
+								</td>
+							</tr>
+						</table>
+						
+					</td>
+				</tr>
+				
+			</table>
+		</ui:define>
+		
+	</ui:composition>
+	
+</html>

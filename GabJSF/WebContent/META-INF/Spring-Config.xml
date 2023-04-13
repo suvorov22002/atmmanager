@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:SpringProperties.properties</value>
+		</property>
+		<property name="systemPropertiesMode" value="2" />
+	</bean>
+	
+	<!-- Service de gestion des SMS -->
+	<bean id="SMSProviderRMIServiceBeanFactory" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://${server.address}:${server.port}/GatewayProviderRMIService" />
+		<property name="serviceInterface" value="com.afrikbrain.smsalert.providers.shared.IProvider" />
+	</bean>
+	
+	<!-- Service de gestion des MAILS -->
+	<bean id="MailProviderRMIServiceBeanFactory" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+		<property name="serviceUrl" value="rmi://${server.address}:${server.port}/MailProviderRMIService" />
+		<property name="serviceInterface" value="com.afrikbrain.smsalert.providers.implementations.mail.shared.IMailProvider" />
+	</bean>
+	
+</beans>

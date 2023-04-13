@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Intervention" language="groovy" columnCount="2" pageWidth="595" pageHeight="842" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true">
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="grdTitre" isDefault="false" fontName="Comic Sans MS" fontSize="10" isBold="true" isUnderline="false"/>
+	<style name="titre" isDefault="false" forecolor="#00CCCC" fontName="Tahoma" fontSize="10" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false"/>
+	<style name="textgras" isDefault="false"/>
+	<parameter name="Report_User" class="java.lang.String"/>
+	<parameter name="PrintFlyLeaf" class="java.lang.Boolean">
+		<defaultValueExpression><![CDATA[true]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DateFormatter" class="java.text.DateFormat">
+		<defaultValueExpression><![CDATA[$P{REPORT_FORMAT_FACTORY}.createDateFormat("EEEE MMM dd, yyyy", $P{REPORT_LOCALE}, java.util.TimeZone.getTimeZone("GMT"))]]></defaultValueExpression>
+	</parameter>
+	<parameter name="printCosts" class="java.lang.Boolean"/>
+	<parameter name="image" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{SUBREPORT_DIR}+"\\image.png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["C:\\jboss-4.2.1\\server\\Portal\\data\\PortalDatas\\GabJSF\\Resources\\Reports\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="bfirstcass10000" class="java.lang.Integer">
+		<fieldDescription><![CDATA[bfirstcass10000]]></fieldDescription>
+	</field>
+	<field name="bfourcass5000" class="java.lang.Integer">
+		<fieldDescription><![CDATA[bfourcass5000]]></fieldDescription>
+	</field>
+	<field name="bsecondcass10000" class="java.lang.Integer">
+		<fieldDescription><![CDATA[bsecondcass10000]]></fieldDescription>
+	</field>
+	<field name="bthirdcass5000" class="java.lang.Integer">
+		<fieldDescription><![CDATA[bthirdcass5000]]></fieldDescription>
+	</field>
+	<field name="date" class="java.util.Date">
+		<fieldDescription><![CDATA[date]]></fieldDescription>
+	</field>
+	<field name="dateMise" class="java.util.Date">
+		<fieldDescription><![CDATA[dateMise]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[description]]></fieldDescription>
+	</field>
+	<field name="equipements" class="java.util.Set">
+		<fieldDescription><![CDATA[equipements]]></fieldDescription>
+	</field>
+	<field name="firstcass10000" class="java.lang.Integer">
+		<fieldDescription><![CDATA[firstcass10000]]></fieldDescription>
+	</field>
+	<field name="fourcass5000" class="java.lang.Integer">
+		<fieldDescription><![CDATA[fourcass5000]]></fieldDescription>
+	</field>
+	<field name="libelle" class="java.lang.String">
+		<fieldDescription><![CDATA[libelle]]></fieldDescription>
+	</field>
+	<field name="nbrjour" class="java.lang.Integer">
+		<fieldDescription><![CDATA[nbrjour]]></fieldDescription>
+	</field>
+	<field name="rapport" class="java.lang.String">
+		<fieldDescription><![CDATA[rapport]]></fieldDescription>
+	</field>
+	<field name="secondcass10000" class="java.lang.Integer">
+		<fieldDescription><![CDATA[secondcass10000]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[status]]></fieldDescription>
+	</field>
+	<field name="thirdcass5000" class="java.lang.Integer">
+		<fieldDescription><![CDATA[thirdcass5000]]></fieldDescription>
+	</field>
+	<field name="libelle_1" class="java.lang.String">
+		<fieldDescription><![CDATA[type.libelle]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[agence.name]]></fieldDescription>
+	</field>
+	<field name="adresse" class="java.lang.String">
+		<fieldDescription><![CDATA[atm.adresse]]></fieldDescription>
+	</field>
+	<field name="nom" class="java.lang.String">
+		<fieldDescription><![CDATA[atm.nom]]></fieldDescription>
+	</field>
+	<field name="nomnbreCass" class="java.lang.Integer">
+		<fieldDescription><![CDATA[atm.nomnbreCass]]></fieldDescription>
+	</field>
+	<field name="numSerie" class="java.lang.String">
+		<fieldDescription><![CDATA[atm.numSerie]]></fieldDescription>
+	</field>
+	<field name="pid" class="java.lang.String">
+		<fieldDescription><![CDATA[atm.pid]]></fieldDescription>
+	</field>
+	<field name="status_1" class="java.lang.Boolean">
+		<fieldDescription><![CDATA[atm.status]]></fieldDescription>
+	</field>
+	<field name="ip" class="java.lang.String">
+		<fieldDescription><![CDATA[atm.ip]]></fieldDescription>
+	</field>
+	<field name="libcassete" class="java.lang.String">
+		<fieldDescription><![CDATA[atm.libcassete]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="363" y="2" width="191" height="44"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{image}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="1" y="15" width="274" height="31"/>
+				<textElement>
+					<font fontName="Comic Sans MS" size="11" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["DSI - NT"+"\n"
++"DEPARTEMENT DE MONETIQUE"]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="0" y="67" width="555" height="20" backcolor="#CCCCCC"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="186" width="555" height="20" backcolor="#CCCCCC"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="88" width="555" height="97"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="319" width="554" height="90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="207" width="555" height="90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="410" width="554" height="20" backcolor="#CCCCCC"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="431" width="275" height="213"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="645" width="554" height="20" backcolor="#CCCCCC"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="298" width="555" height="20" backcolor="#CCCCCC"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="687" width="275" height="98"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="666" width="275" height="20" backcolor="#CCCCCC"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="275" y="666" width="279" height="20" backcolor="#CCCCCC"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="275" y="687" width="279" height="98"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="275" y="431" width="279" height="213"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="352" y="785" width="202" height="17"/>
+				<textElement textAlignment="Right">
+					<font fontName="Comic Sans MS" size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[NB : Faire une copie pour l’agence]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="668" width="279" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[RESPONSABLE GAB]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="668" width="274" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[TECHNICIEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="647" width="553" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[VISA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="187" width="553" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[INTERVENTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="299" width="553" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[RAPPORT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="412" width="553" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Information utile]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="35" y="101" width="202" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Intervenant : "+$F{nom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="432" width="274" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Pièce utilisée ?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="69" width="553" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[FICHE D’INTERVENTION]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="35" y="118" width="202" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Adresse IP GAB : "+$F{ip}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="275" y="690" width="279" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nom / Date / Signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="690" width="274" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nom / Date / Signature]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="8" y="324" width="534" height="80"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="46" y="212" width="496" height="80"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{libelle}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="5" y="212" width="41" height="17"/>
+				<textElement>
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Motif:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="431" width="279" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Etat des compteurs avant intervention]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="536" width="279" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Etat des compteurs après intervention]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="288" y="494" width="254" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Cass10 000  : "+$F{secondcass10000}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="288" y="511" width="254" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Cass 5 000   : "+$F{fourcass5000}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="288" y="477" width="254" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Cass 5 000   : "+$F{thirdcass5000}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="288" y="460" width="254" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Cass 10 000  : "+$F{firstcass10000}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="611" width="252" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Cass 5 000  : "+$F{bfourcass5000}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="577" width="252" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Cass 5 000  : "+$F{bthirdcass5000}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="560" width="252" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Cass 10 000  : "+$F{bfirstcass10000}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="594" width="252" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Cass 10 000  : "+$F{bsecondcass10000}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="135" width="202" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Cassettes  : "+$F{libcassete}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="118" width="202" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Agence : "+$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="35" y="152" width="202" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Nombre de Cassettes : "+$F{nomnbreCass}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="35" y="135" width="202" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["N° Série GAB : "+$F{numSerie}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="313" y="152" width="202" height="17"/>
+				<textElement>
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Etat Actuel  :]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="10" y="453" width="256" height="24"/>
+				<dataSourceExpression><![CDATA[new JRBeanCollectionDataSource(new ArrayList<Equipement>($F{equipements}))]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "FicheInterventionItem.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="313" y="101" width="202" height="17"/>
+				<textElement markup="none">
+					<font fontName="Comic Sans MS" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Nom Gab: "+$F{nom}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch">
+			<printWhenExpression><![CDATA[]]></printWhenExpression>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch">
+			<printWhenExpression><![CDATA[]]></printWhenExpression>
+			<elementGroup>
+				<elementGroup/>
+			</elementGroup>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch">
+			<printWhenExpression><![CDATA[]]></printWhenExpression>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch">
+			<printWhenExpression><![CDATA[]]></printWhenExpression>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

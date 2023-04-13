@@ -1,0 +1,128 @@
+<f:subview xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:dc="http://www.afrilandfirstbank.com/Facelets/Taglib/DialogComponent">
+	
+	<dc:ParameterDialogComponent
+		id = "atmUserDialog"
+		width = "530"
+		height = "150"
+		rendered = "#{atmListPanel.atmUserDialog.open}"
+		showWhenRendered = "#{atmListPanel.atmUserDialog.open}"
+		titleIcon = "#{atmListPanel.atmUserDialog.icon}"
+		title = "#{messages[atmListPanel.atmUserDialog.title]}"
+		closeIcon = "#{viewHelper.sessionSkinURL}/Images/DialogClose.png">
+		
+		<ui:define name="closeIconAction">
+			<a4j:support event="onclick" action="#{atmListPanel.atmUserDialog.cancel}" onsubmit="Richfaces.hideModalPanel('atmUserDialog');" immediate="true"/>
+		</ui:define>
+		
+		<ui:define name="defineDialogContent">
+			
+			 <table width="100%" align="center" cellpadding="0" cellspacing="0" border="0">
+					
+					<tr>
+					  <td width="100%">
+					     <fieldset class="fieldSetStyle">
+									
+						 <legend> </legend>
+				          
+				          <fieldset class="fieldSetStyle">
+		  	 					<legend> </legend>
+								
+								<table width="100%" align="center" cellpadding="5" cellspacing="5" border="0">
+								   <tr>
+								     <td><h:outputText value="Emplpoye" styleClass="labelStyle" style="font-weight:bold;" /></td> 
+								     <td>
+									      <h:inputText id="input" value="#{atmListPanel.atmUserDialog.txtName}" styleClass="text ui-widget-content ui-corner-all" />				      
+									  	  <rich:suggestionbox
+										       limitToList="true"
+										       bgcolor="#ffffff"
+											   suggestionAction="#{atmListPanel.atmUserDialog.chargeEmployee}" 
+											   var="state" 
+											   for="input"
+											   fetchValue="#{state.name}"
+											   nothingLabel="......">
+												<h:column>
+												   <h:outputText value="#{state.name}" style="font-size:11px; font-weight:bold; color:#333333;"/>
+												</h:column>
+									      </rich:suggestionbox>								     
+								     </td>
+								     <td>
+										  <a4j:commandButton action="#{atmListPanel.atmUserDialog.processAdd}" value="Ajouter" reRender="validationGroupDataTable" styleClass="ui-button ui-widget ui-state-default ui-corner-all" limitToList="true" />
+								     </td>
+								     <td> 
+								         <a4j:commandButton action="#{atmListPanel.atmUserDialog.processDelete}" value="Supprimer" reRender="validationGroupDataTable" styleClass="ui-button ui-widget ui-state-default ui-corner-all" limitToList="true" />
+								     </td>
+								   </tr>
+								</table>
+								
+								<rich:spacer height="5px" />
+								
+								<br />
+								
+				           <rich:extendedDataTable
+								id="validationGroupDataTable" 
+								rendered="true" 
+								rows="25"
+								var="var"
+								rowKeyVar="row"
+								width="100%"
+								height="350px"
+								value="#{atmListPanel.atmUserDialog.managers}"
+								selection="#{atmListPanel.atmUserDialog.selection}"
+								rowClasses="row-style-impair, row-style-pair"
+								cellpadding="0"
+								selectionMode="multi"
+								selectedClass="row-style-selected"
+								noDataLabel=".........">
+								
+								<rich:column id="colIpAdress" width="100%">
+									<f:facet name="header">
+										<h:panelGroup>
+											<h:outputText value="Utilisateurs"/>
+										</h:panelGroup>
+									</f:facet>        
+								    <h:outputText value="#{var.name}" style="font-size:11px; font-weight:bold; color:#333333;"/>
+								</rich:column>						
+												
+							</rich:extendedDataTable>
+				          
+				          </fieldset>
+						
+						<rich:spacer height="2px" />
+						
+						
+					  <table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"> 
+			  	 		<tr>
+			  	 			<td width="100%" align="right">
+			  	 				
+								<h:panelGrid columns="5">
+									<rich:spacer width="5px"/>
+									<a4j:commandButton value="#{messages['dialog.btnvalider']}"  action="#{atmListPanel.atmUserDialog.close}" reRender="#{clientArea.ID}" styleClass="ui-button ui-widget ui-state-default ui-corner-all" onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+				                    <rich:spacer width="5px"/>
+									<a4j:commandButton value="#{messages['dialog.btnannuler']}" action="#{atmListPanel.atmUserDialog.cancel}" onclick="Richfaces.hideModalPanel('atmUserDialog');" styleClass="ui-button ui-widget ui-state-default ui-corner-all" immediate="true"/>
+		                            <rich:spacer width="5px"/>
+								</h:panelGrid>
+								
+			  	 			</td>
+			  	 		</tr>
+			  	 	</table>
+								
+				  </fieldset>
+				  </td>
+				 </tr>
+			 </table>
+		
+		</ui:define>
+		
+	</dc:ParameterDialogComponent>
+	
+	<ui:include src="#{atmListPanel.atmUserDialog.errorDialogDefinition}" />
+	<ui:include src="#{atmListPanel.atmUserDialog.informationDialogDefinition}" />
+	<ui:include src="#{atmListPanel.atmUserDialog.waitDialogDefinition}" />
+	
+</f:subview>

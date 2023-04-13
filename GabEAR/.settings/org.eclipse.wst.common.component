@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="CreditCarteEAR">
+        <wb-resource deploy-path="/" source-path="/EarContent"/>
+        <dependent-module archiveName="Genezis-LoginModule.jar" deploy-path="/" handle="module:/resource/Genezis-LoginModule/Genezis-LoginModule">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Genezis-Scanner.jar" deploy-path="/" handle="module:/resource/Genezis-Scanner/Genezis-Scanner">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-Stock-Manager-DAO.jar" deploy-path="/" handle="module:/resource/E-Stock-Manager-DAO/E-Stock-Manager-DAO">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-Stock-Manager-DataModel.jar" deploy-path="/" handle="module:/resource/E-Stock-Manager-DataModel/E-Stock-Manager-DataModel">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-Stock-Manager-BuisnessLogic.jar" deploy-path="/" handle="module:/resource/E-Stock-Manager-BuisnessLogic/E-Stock-Manager-BuisnessLogic">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-Stock-Manager-Presentation.war" deploy-path="/" handle="module:/resource/E-Stock-Manager-Presentation/E-Stock-Manager-Presentation">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="GenezisExtraClassLoader.jar" deploy-path="/" handle="module:/resource/GenezisExtraClassLoader/GenezisExtraClassLoader">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="GenezisReportViewerTools.jar" deploy-path="/" handle="module:/resource/GenezisReportViewerTools/GenezisReportViewerTools">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Genezis-Multilangue.jar" deploy-path="/" handle="module:/resource/Genezis-Multilangue/Genezis-Multilangue">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SmsServiceComponentEventManager.jar" deploy-path="/" handle="module:/resource/SmsServiceComponentEventManager/SmsServiceComponentEventManager">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="EBP-IDGenerator.jar" deploy-path="/" handle="module:/resource/EBP-IDGenerator/EBP-IDGenerator">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-New-BusinessLogic.jar" deploy-path="/" handle="module:/resource/E-New-BusinessLogic/E-New-BusinessLogic">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-New-DAO.jar" deploy-path="/" handle="module:/resource/E-New-DAO/E-New-DAO">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-New-DataModel.jar" deploy-path="/" handle="module:/resource/E-New-DataModel/E-New-DataModel">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-BusinessPortal-Presentation.war" deploy-path="/" handle="module:/resource/E-BusinessPortal-Presentation/E-BusinessPortal-Presentation">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-New-Presentation.war" deploy-path="/" handle="module:/resource/E-New-Presentation/E-New-Presentation">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-RH-BusinessLogic.jar" deploy-path="/" handle="module:/resource/E-RH-BusinessLogic/E-RH-BusinessLogic">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-RH-DAO.jar" deploy-path="/" handle="module:/resource/E-RH-DAO/E-RH-DAO">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-RH-DataModel.jar" deploy-path="/" handle="module:/resource/E-RH-DataModel/E-RH-DataModel">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="E-RH-Presentation.war" deploy-path="/" handle="module:/resource/E-RH-Presentation/E-RH-Presentation">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Control-MessageBundle.jar" deploy-path="/" handle="module:/resource/Control-MessageBundle/Control-MessageBundle">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Control-Presentation.war" deploy-path="/" handle="module:/resource/Control-Presentation/Control-Presentation">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CreditCarteBuisness.jar" deploy-path="/" handle="module:/resource/CreditCarteBuisness/CreditCarteBuisness">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CreditCarteDAO.jar" deploy-path="/" handle="module:/resource/CreditCarteDAO/CreditCarteDAO">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CreditCarteJPA.jar" deploy-path="/" handle="module:/resource/CreditCarteJPA/CreditCarteJPA">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CreditCarteJSF.war" deploy-path="/" handle="module:/resource/CreditCarteJSF/CreditCarteJSF">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CreditCarteMessage.jar" deploy-path="/" handle="module:/resource/CreditCarteMessage/CreditCarteMessage">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="PensionBuisness.jar" deploy-path="/" handle="module:/resource/PensionBuisness/PensionBuisness">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="PensionDAO.jar" deploy-path="/" handle="module:/resource/PensionDAO/PensionDAO">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="PensionJPA.jar" deploy-path="/" handle="module:/resource/PensionJPA/PensionJPA">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="PensionJSF.war" deploy-path="/" handle="module:/resource/PensionJSF/PensionJSF">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="PensionMessage.jar" deploy-path="/" handle="module:/resource/PensionMessage/PensionMessage">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="GabClient.jar" deploy-path="/" handle="module:/resource/GabClient/GabClient">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="GabDAO.jar" deploy-path="/" handle="module:/resource/GabDAO/GabDAO">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="GabJPA.jar" deploy-path="/" handle="module:/resource/GabJPA/GabJPA">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="GabJSF.war" deploy-path="/" handle="module:/resource/GabJSF/GabJSF">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="GabMessage.jar" deploy-path="/" handle="module:/resource/GabMessage/GabMessage">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

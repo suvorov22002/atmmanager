@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich">
+	
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+		<title>
+			<h:outputText value="#{messages['credit.application.title']} - #{messages['Credit.application.version']}" />
+		</title>
+		
+		<link rel="shortcut icon" href="#{viewHelper.sessionSkinURL}/Images/e.ico"/>
+						
+		<link rel="stylesheet" href="#{viewHelper.sessionSkinURL}/jquery/development-bundle/themes/humanity/jquery.ui.all.css" />
+		<script src="#{viewHelper.sessionSkinURL}/jquery/development-bundle/ui/jquery.ui.button.js"></script>
+		<script src="#{viewHelper.sessionSkinURL}/jquery/development-bundle/ui/jquery.ui.core.js"></script>
+		<script src="#{viewHelper.sessionSkinURL}/jquery/development-bundle/ui/jquery.ui.widget.js"></script>
+		<script src="#{viewHelper.sessionSkinURL}/jquery/development-bundle/ui/jquery.ui.datepicker.js"></script>
+		<link rel="stylesheet" href="#{viewHelper.sessionSkinURL}/jquery/development-bundle/demos/demos.css" />
+									
+		<link rel="stylesheet" href="#{viewHelper.sessionSkinURL}/Style/mainStyle.css" type="text/css" media="all" />
+		<script  src="#{viewHelper.sessionSkinURL}/Scripts/mainScript.js" ></script>
+		
+				
+	</head>
+		
+	<body class="body" onload="resizeWorkArea();" >
+		
+		<table id="GlobalArea" class="GlobalArea" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td id="GlobalApplicationArea" align="center" class="GlobalApplicationArea" width="100%" height="100%">
+					<ui:insert name="ApplicationArea">		
+					</ui:insert>
+				</td>
+			</tr>
+		</table>
+	</body>
+	
+</html>

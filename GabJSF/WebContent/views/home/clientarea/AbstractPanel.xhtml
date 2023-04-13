@@ -1,0 +1,60 @@
+<f:subview xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+
+	<ui:insert name="panel">
+		
+		<div id="listPanel" title="#{messages[clientArea.currentPanel.title]}"  >
+		
+				<table width="100%" cellpadding="0" cellspacing="0" class="ClientTableStyle">
+					<tr>
+						<td width="100%" height="20">
+						
+							<h:form id="ClientHeaderAreaForm" styleClass="formsStyle">
+							<table width="100%" cellpadding="0" cellspacing="0" border="0" class="clientPanelHeaderStyle" >
+								<tr>
+									<td align="center" valign="middle">
+										<rich:spacer width="5px"/>
+										<h:graphicImage value="#{clientArea.currentPanel.icon}" />
+										<rich:spacer width="5px"/>
+									</td>
+									<td width="100%" align="left" valign="middle">
+										<ui:insert name="panelTitle">
+											<h:outputText value="#{messages[clientArea.currentPanel.title]}" />
+										</ui:insert>
+									</td>
+									<td align="center" valign="middle">
+										<rich:spacer width="5px"/>
+										<h:graphicImage id="panelCloseIcon" title="Fermer" value="#{viewHelper.sessionSkinURL}/Images/DialogClose.png">
+											<a4j:support action="#{clientArea.removeCurrentPanel}" event="onclick" reRender="#{clientArea.ID}" immediate="true">
+												<f:setPropertyActionListener target="#{clientArea.currentPanelName}" value="#{defaultPanel.name}" />
+											</a4j:support>
+										</h:graphicImage>
+										<rich:spacer width="5px"/>
+									</td>
+								</tr>
+							</table>
+							</h:form>
+							
+						</td>
+					</tr>
+					<tr>
+						<td width="100%" valign="top" align="left" class="panelContentClass">
+							<h:form id="PanelContentAreaForm">
+								<ui:insert name="panelContent" />
+							</h:form>
+						</td>
+					</tr>	
+				</table>
+		
+			
+		</div>
+				
+		<ui:insert name="IncludedArea" />
+		
+	</ui:insert>
+	
+</f:subview>

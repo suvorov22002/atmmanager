@@ -1,0 +1,98 @@
+<f:subview xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:dc="http://www.afrilandfirstbank.com/Facelets/Taglib/DialogComponent">
+	
+	<dc:ParameterDialogComponent
+		id = "BirthdayDialog"
+		width = "900"
+		height = "450"
+		rendered ="#{birthdayDialog.open}"
+		showWhenRendered ="#{birthdayDialog.open}"
+		titleIcon = "#{birthdayDialog.icon}"
+		title = "#{birthdayDialog.title}"
+		closeIcon = "#{viewHelper.sessionSkinURL}/Images/DialogClose.png">
+		
+		<ui:define name="closeIconAction">
+			<a4j:support event="onclick" action="#{birthdayDialog.close}" onsubmit="Richfaces.hideModalPanel('BirthdayDialog');" immediate="true"/>
+		</ui:define>
+		
+		<ui:define name="defineDialogContent">
+			
+			 <fieldset class="fieldSetStyle"> <legend> </legend>
+												    		
+					 <table width="100%" align="center" cellpadding="2" cellspacing="2" border="0">
+					     
+						    <tr>
+						       <td width="100%" >
+						       			   	 
+					 				<rich:extendedDataTable id="frmValide" rendered="true"
+										var="var" rowKeyVar="row" width="100%" height="300px"
+										value="#{birthdayDialog.listes}"
+										rowClasses="row-style-impair, row-style-pair" cellpadding="0"
+										selectionMode="multi" 
+										selectedClass="ui-widget ui-state-default ui-corner-all"
+										noDataLabel="..........">
+										
+										<rich:column width="15%">
+											<f:facet name="header">
+												<h:panelGroup> <h:outputText value="Num Carte" /> </h:panelGroup>
+											</f:facet>
+											<h:outputText value="#{var.carte}" styleClass="labelStyle"/>						
+										</rich:column>
+										
+										<rich:column  width="40%">
+											<f:facet name="header">
+												<h:panelGroup> <h:outputText value="Nom Client" /> </h:panelGroup>
+											</f:facet>
+											<h:outputText value="#{var.name}" styleClass="labelStyle"/>
+										</rich:column>
+										
+										<rich:column  width="15%">
+											<f:facet name="header">
+												<h:panelGroup> <h:outputText value="Telephone" /> </h:panelGroup>
+											</f:facet>
+											<h:outputText style="width:200px" value="#{var.phone}" styleClass="labelStyle"/>	
+										</rich:column>
+																						
+										<rich:column width="10%">
+											<f:facet name="header">
+												<h:panelGroup> <h:outputText value="Active" /> </h:panelGroup>
+											</f:facet>
+											<h:selectBooleanCheckbox value="#{var.select}" styleClass="labelStyle"/>							
+										</rich:column>
+																						
+									</rich:extendedDataTable> 	
+						       		 	
+						       </td>
+						    </tr>							   
+					 </table>	    		
+									   	  
+			    				
+					<table width="100%" align="right" cellpadding="0" cellspacing="0" border="0">
+					    <tr align="right">
+					      <td width="10%"> 
+					         <a4j:commandButton value="Enregistrer" action ="#{birthdayDialog.saveMAJ}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}" onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();"  styleClass="ui-button ui-widget ui-state-default ui-corner-all" />  
+					         <rich:spacer width="15px"/>
+					         <a4j:commandButton value="Envoyer" action ="#{birthdayDialog.sendMessage}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}" onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();"  styleClass="ui-button ui-widget ui-state-default ui-corner-all" />  
+					         <rich:spacer width="15px"/>   
+					         <a4j:commandButton value="Fermer" action="#{birthdayDialog.close}" onclick="Richfaces.hideModalPanel('BirthdayDialog');" immediate="true" styleClass="ui-button ui-widget ui-state-default ui-corner-all" style="width:100px" /> 
+					      </td>
+					    </tr>
+					</table>			    
+			    
+				  			  			      
+	  	   </fieldset>
+	  	 	 
+		</ui:define>
+		
+	</dc:ParameterDialogComponent>
+	
+	<ui:include src="#{birthdayDialog.errorDialogDefinition}" />
+	<ui:include src="#{birthdayDialog.informationDialogDefinition}" />
+	<ui:include src="#{birthdayDialog.waitDialogDefinition}" />
+	
+</f:subview>

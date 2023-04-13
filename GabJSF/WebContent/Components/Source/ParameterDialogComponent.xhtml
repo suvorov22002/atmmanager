@@ -1,0 +1,92 @@
+<f:subview xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:dc="http://www.afrilandfirstbank.com/Facelets/Taglib/DialogComponent">
+
+	<ui:composition>
+		
+		<dc:DialogComponent
+			id="#{id}"
+			autosized="true"
+			width="#{width}"
+			height="#{height}"
+			showWhenRendered="#{showWhenRendered}"
+			rendered="#{rendered}"
+			titleIcon = "#{titleIcon}"
+			title = "#{title}"
+			closeIcon = "#{closeIcon}">
+			
+			<ui:define name="closeIconAction">
+		  		<ui:insert name="closeIconAction" />
+		  	</ui:define>
+		  	  
+		  	<ui:define name="dialogContent">
+		  	 	<ui:insert name="defineDialogContent">
+		  	 		
+		  	 		<table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"> 
+			  	 		<tr>
+			  	 			<td width="100%" align="left">
+			  	 				<fieldset class="fieldSetStyle">
+			  	 					<legend>
+										<h:outputText value="#{masterDataTitle}"/>
+									</legend>
+									
+									<h:panelGrid columns="3">
+										
+										<h:outputText value="#{lblParameterCode}" styleClass="labelStyle"/>
+										<rich:spacer width="5px"/>
+										<h:inputText id="txtParameterCode" value="#{txtParameterCode}" styleClass="textfieldStyle" disabled="#{txtParameterCodeReadOnly}" onkeyup="javascript:metEnMajuscule(this.id);"/>
+										
+										<h:outputText value="#{lblParameterLibelle}" styleClass="labelStyle"/>
+										<rich:spacer width="5px"/>
+										<h:inputText id="txtParameterLibelle" value="#{txtParameterLibelle}" styleClass="textfieldStyle" disabled="#{txtParameterLibelleReadOnly}" onkeyup="javascript:metEnMajuscule(this.id);"/>
+										
+										<ui:insert name="masterDatas" />
+										
+									</h:panelGrid>
+									
+			  	 				</fieldset>
+			  	 				
+			  	 			</td>
+			  	 		</tr>
+			  	 		
+			  	 		<tr>
+			  	 			<td width="100%" align="center">
+			  	 				<ui:insert name="detailsDatas" />
+			  	 			</td>
+			  	 		</tr>
+			  	 		
+			  	 		<tr>
+			  	 			<td width="100%" align="right">
+			  	 				
+			  	 				<ui:insert name="CommandControls">
+			  	 					
+				  	 				<h:panelGrid columns="3">
+				  	 					
+				  	 					<ui:insert name="ValidateButton"/>
+				  	 							  	 					
+				  	 					<rich:spacer width="5px"/>
+				  	 					
+				  	 					<ui:insert name="CancelButton"/>
+				  	 					
+				  	 				</h:panelGrid>
+				  	 				
+			  	 				</ui:insert>
+			  	 				
+			  	 			</td>
+			  	 		</tr>
+			  	 	</table>
+			  	 	
+		  	 	</ui:insert>
+	  	 		
+			  
+		    </ui:define>
+		    
+		</dc:DialogComponent>
+		
+	</ui:composition>
+
+</f:subview>

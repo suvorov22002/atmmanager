@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+	
+	<ui:composition template="/views/home/clientarea/AbstractListPanel.xhtml">
+		
+		<ui:define name="searchAreaCriteriaContent">
+				
+				<h:panelGrid columns="2">
+				
+					<h:panelGroup>
+						<h:outputText value="Date debut" styleClass="labelStyle"/>
+						<rich:spacer width="3px"/>
+						<rich:calendar enableManualInput="true" datePattern="dd/MM/yyyy" value="#{interventionListPanel.datedebut}" locale="#{clientArea.locale}" styleClass="textfieldStyle"/>
+						<rich:spacer width="10px"/>
+					</h:panelGroup>
+					
+					<h:panelGroup>
+						<h:outputText value="Date fin" styleClass="labelStyle"/>
+						<rich:spacer width="3px"/>
+						<rich:calendar enableManualInput="true" datePattern="dd/MM/yyyy" value="#{interventionListPanel.datefin}" locale="#{clientArea.locale}" styleClass="textfieldStyle"/>
+						<rich:spacer width="10px"/>
+					</h:panelGroup>
+					
+					<h:panelGroup  >
+						<h:outputText value="Agence" styleClass="labelStyle"/>
+						<rich:spacer width="3px"/>
+						<h:selectOneMenu  value="#{interventionListPanel.agence}"  styleClass="text ui-widget-content ui-corner-all" >
+						   <f:selectItems   value="#{interventionListPanel.itemsBranch}" />
+				 	    </h:selectOneMenu>	
+						<rich:spacer width="10px"/>
+					</h:panelGroup>
+					
+					<h:panelGroup  >
+						<h:outputText value="Type" styleClass="labelStyle"/>
+						<rich:spacer width="3px"/>
+						<h:selectOneMenu  value="#{interventionListPanel.type}"  styleClass="text ui-widget-content ui-corner-all" >
+						   <f:selectItems   value="#{interventionListPanel.items}" />
+				 	    </h:selectOneMenu>	
+						<rich:spacer width="10px"/>
+					</h:panelGroup>
+											
+				</h:panelGrid>
+				
+		</ui:define>
+		
+		<ui:define name="searchAreaButtonContent">
+			<a4j:commandButton action="#{interventionListPanel.processSearch}" value="#{messages['ctrlp.panelsearch.btnsearch.title']}" immediate="false" styleClass="ui-button ui-widget ui-state-default ui-corner-all" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}" onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+		</ui:define>
+				
+		<ui:define name="listAreaContent">
+			<rich:extendedDataTable
+				id="Table" 
+				rendered="true" 
+				var="var"
+				rowKeyVar="row"
+				width="100%"
+				height="350px"
+				value="#{interventionListPanel.values}"
+				selection="#{interventionListPanel.selection}"
+				rowClasses="row-style-impair, row-style-pair"
+				cellpadding="0"
+				selectionMode="multi"
+				selectedClass="row-style-selected"
+				noDataLabel=".........">
+				
+				<rich:column width="60%">
+					<f:facet name="header">
+						<h:panelGroup>
+							<h:outputText value="Gab/TPE"/>
+						</h:panelGroup>
+					</f:facet>
+					<h:outputText value="#{var.atm.nom}" />
+				</rich:column>						
+				
+				<rich:column  width="20%">
+					<f:facet name="header">
+						<h:panelGroup>
+							<h:outputText value="Date"/>
+						</h:panelGroup>
+					</f:facet>
+					<h:outputText value="#{var.date}" >
+					     <f:convertDateTime timeZone="#{interventionListPanel.timeZone}" pattern="dd/MM/yyyy" dateStyle="short" locale="#{clientArea.locale}" />
+					</h:outputText>
+				</rich:column>
+				
+				<rich:column  width="20%">
+					<f:facet name="header">
+						<h:panelGroup>
+							<h:outputText value="Nombre de Jour"/>
+						</h:panelGroup>
+					</f:facet>
+					<h:outputText value="#{var.nbrjour}" />
+				</rich:column>
+								
+			</rich:extendedDataTable>
+		</ui:define>
+				
+		<ui:define name="listAreaButtonContent">
+			<table border="0" align="center" >
+				<tr>
+					<td >
+						<a4j:commandButton value="#{messages['ctr.btncreer']}" styleClass="ui-button ui-widget ui-state-default ui-corner-all"  action="#{interventionListPanel.processCreate}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}" onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+					    <rich:spacer height="5"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td >
+						<a4j:commandButton value="#{messages['ctr.list.btnmodifier']}" styleClass="ui-button ui-widget ui-state-default ui-corner-all"  action="#{interventionListPanel.processUpdate}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}" onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+					    <rich:spacer height="5"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td >
+						<a4j:commandButton value="Imprimer" styleClass="ui-button ui-widget ui-state-default ui-corner-all"  action="#{interventionListPanel.processPrint}" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}" onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+					    <rich:spacer height="5"/>
+					</td>
+				</tr>	
+								
+			</table>
+			
+		</ui:define>
+		
+		<ui:define name="IncludedArea">
+			
+			<ui:include src="#{interventionListPanel.errorDialogDefinition}" />
+			<ui:include src="#{interventionListPanel.informationDialogDefinition}" />
+			<ui:include src="#{interventionListPanel.waitDialogDefinition}" />
+			<ui:include src="#{interventionListPanel.childDialogDefinition}" />
+			<ui:include src="#{interventionListPanel.reportViewer.fileDefinition}" />
+			
+		</ui:define>
+		
+	</ui:composition>
+
+</html>

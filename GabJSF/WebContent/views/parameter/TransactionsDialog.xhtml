@@ -1,0 +1,76 @@
+<f:subview xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:dc="http://www.afrilandfirstbank.com/Facelets/Taglib/DialogComponent">
+	
+	<dc:ParameterDialogComponent
+		id = "Transactions"
+		width = "330"
+		height = "150"
+		rendered = "#{transactions.open}"
+		showWhenRendered = "#{transactions.open}"
+		titleIcon = "#{transactions.icon}"
+		title = "#{messages[transactions.title]}"
+		closeIcon = "#{viewHelper.sessionSkinURL}/Images/DialogClose.png">
+		
+		<ui:define name="closeIconAction">
+			<a4j:support event="onclick" action="#{transactions.cancel}" onsubmit="Richfaces.hideModalPanel('Transactions');" immediate="true"/>
+		</ui:define>
+		
+		<ui:define name="defineDialogContent">
+			
+			 <fieldset class="fieldSetStyle">
+			  <legend> </legend>
+		      
+				   <table width="100%" align="center" cellpadding="2" cellspacing="2" border="0">
+				   
+						 <tr>
+						    <td align="left">
+						      <h:outputText value="Date Debut" styleClass="labelStyle"/>
+						    </td>  
+						    <td>  
+						      <rich:calendar datePattern="dd/MM/yyyy" value="#{transactions.datedebut}" locale="#{clientArea.locale}" styleClass="textfieldStyle"/>				 
+						    </td>
+						   
+						    <td align="left">
+						      <h:outputText value="Date Fin" styleClass="labelStyle"/>
+						     </td>  
+						    <td> 
+						       <rich:calendar datePattern="dd/MM/yyyy" value="#{transactions.datefin}"  locale="#{clientArea.locale}" styleClass="textfieldStyle"/>			 
+						    </td>
+						</tr>
+						
+				</table>
+			  
+	  	 	</fieldset>
+	  	 	
+						
+  	 		<table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"> 
+	  	 		<tr>
+	  	 			<td width="100%" align="right">
+	  	 				
+						<h:panelGrid columns="5">
+							<rich:spacer width="5px"/>
+							<a4j:commandButton value="#{messages['dialog.btnvalider']}"  action="#{transactions.process}" reRender="#{clientArea.ID}" styleClass="ui-button ui-widget ui-state-default ui-corner-all" onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+		                    <rich:spacer width="5px"/>
+							<a4j:commandButton value="#{messages['dialog.btnannuler']}" action="#{transactions.cancel}" onclick="Richfaces.hideModalPanel('Transactions');" styleClass="ui-button ui-widget ui-state-default ui-corner-all" immediate="true"/>
+                            <rich:spacer width="5px"/>
+						</h:panelGrid>
+						
+	  	 			</td>
+	  	 		</tr>
+	  	 	</table>
+	  	 	
+		
+		</ui:define>
+		
+	</dc:ParameterDialogComponent>
+	
+	<ui:include src="#{transactions.errorDialogDefinition}" />
+	<ui:include src="#{transactions.informationDialogDefinition}" />
+	<ui:include src="#{transactions.waitDialogDefinition}" />
+	
+</f:subview>

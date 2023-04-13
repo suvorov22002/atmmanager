@@ -1,0 +1,97 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:composition template="/views/home/clientarea/AbstractPanel.xhtml">
+		
+		<ui:define name="panelContent">
+			
+			<table width="100%" style="background: none;">
+								
+				<tr>
+					<td id="searchAreaTD" class="userSearchAreaTD" colspan="2">
+						
+						<fieldset class="fieldSetStyle">
+							<legend>
+								<ui:insert name="searchAreaTitle">
+									<h:outputText value="#{messages['listpanel.search.title']}" />
+								</ui:insert>
+							</legend>
+							
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="90%">
+										<ui:insert name="searchAreaCriteriaContent">
+											<h:outputText value="searchAreaCriteriaContent" />
+										</ui:insert>
+									</td>
+									<td valign="middle" align="right">
+										<ui:insert name="searchAreaButtonContent">
+											<h:outputText value="searchAreaButtonContent" />
+										</ui:insert>
+									</td>
+								</tr>
+							</table>
+							
+						</fieldset>
+						
+					</td>
+					
+					<td style="white-space: pre;" />
+					
+				</tr>
+				
+				<tr>
+					<td>
+						<fieldset  class= "fieldSetStyle">
+							<legend>
+								<ui:insert name="listAreaTitle">
+									<h:outputText value="#{messages['listpanel.list.title']}" />
+								</ui:insert>
+							</legend>
+							
+							<table width="100%" border="0" cellpadding="2" cellspacing="2">
+								<tr>
+									<td width="90%" valign="top">
+										<ui:insert name="listAreaContent">
+											<h:outputText value="listAreaContent" />
+										</ui:insert>
+									</td>
+									<td>
+										<rich:spacer width="10px"/>
+									</td>
+									<td class="listAreaButtonContent" align="center" valign="top">
+										<ui:insert name="listAreaButtonContent">
+											<h:outputText value="listAreaButtonContent" />
+											
+											<table border="0" align="center">
+												<tr>
+													<td class="listAreaButtonContent">
+														<a4j:commandButton value="Fermer" styleClass="ui-button ui-widget ui-state-default ui-corner-all"  action="#{clientArea.currentPanel.close}" immediate="true" reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}" onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" />
+													</td>
+												</tr>
+											</table>
+										</ui:insert>
+										
+										<a4j:commandButton value="#{messages['afb.abstractlistpanel.btnclose']}" action="#{clientArea.showCurrentPanel}" styleClass="ui-button ui-widget ui-state-default ui-corner-all"  reRender="#{clientArea.ID}" eventsQueue="#{clientArea.requestQueue}" onclick="startWaitInStyle();" oncomplete="stoptWaitInStyle();" >
+												<f:setPropertyActionListener target="#{clientArea.currentPanelName}" value="#{defaultPanel.name}" />
+										</a4j:commandButton>
+											
+									</td>
+								</tr>
+							</table>
+												
+						</fieldset>
+					</td>
+				</tr>
+				
+			</table>
+			
+		</ui:define>
+		
+	</ui:composition>
+
+</html>
